@@ -1,5 +1,7 @@
 # Flagit
-A CLI tool to manage your TODOs and FIXMEs.
+A CLI tool to manage your TODOs and FIXMEs. It pulls out every TODOs and FIXMEs in your codebase and create an issue on github.
+
+Currently, it only supports Github. I do plan to add support for others (this should be easy though).
 
 ## Quick setup
 Flagit relies on `.git` folder to retrieve the repository and the username.
