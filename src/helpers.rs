@@ -1,10 +1,6 @@
-use std::fs;
+use std::fs::{self, OpenOptions};
 use std::io::{BufRead, BufReader};
-
-pub fn is_git_repo(dir: &std::path::Path) -> bool {
-    let path = dir.join(".git");
-    fs::metadata(path).is_ok()
-}
+use std::io::prelude::*;
 
 fn is_ignored(path: &std::path::PathBuf) -> bool {
     if let Ok(contents) = fs::read_to_string(".gitignore") {
@@ -55,6 +51,7 @@ pub fn get_issues(path: &std::path::Path) -> Vec<String> {
             issues.push(line);
         }
     }
-
     issues
 }
+
+
