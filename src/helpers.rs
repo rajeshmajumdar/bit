@@ -46,14 +46,15 @@ pub fn get_issues(path: &std::path::Path) -> Vec<String> {
     let mut issues = Vec::new();
     let file = fs::File::open(&path).unwrap();
     let reader = BufReader::new(file);
+    let special_comments = vec!["TODO", "FIXME", "BUG", "NOTE", "HACK", "OPTIMIZATION", "IDEA"];
 
     for line in reader.lines() {
         let line = line.unwrap();
-        if line.contains("TODO") || line.contains("FIXME") {
-            issues.push(line);
+        for comment in special_comments.iter() {
+            if line.contains(comment) {
+                issues.push(line.to_owned());
+            }
         }
     }
     issues
 }
-
-
