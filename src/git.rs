@@ -73,6 +73,7 @@ fn get_repo_info() -> Option<(String, String)> {
     None
 }
 
+// TODO: Support for windows
 fn get_git_creds() -> Option<String> {
     let home = match std::env::var_os("HOME") {
         Some(path) => path,
@@ -94,6 +95,7 @@ fn get_git_creds() -> Option<String> {
     None
 }
 
+// TODO: Add more special comments.
 pub fn create_issue(comment: String) -> Result<(), Box<dyn std::error::Error>> {
     let token = get_git_creds().unwrap_or_default();
     let repo_data = get_repo_info().unwrap_or_default();
@@ -123,9 +125,8 @@ pub fn create_issue(comment: String) -> Result<(), Box<dyn std::error::Error>> {
                 .body(issue)
                 .send()
                 .unwrap();
-            println!("Status: {}", res.status());
-
         }
+
         Ok(())
     } else {
         Ok(())

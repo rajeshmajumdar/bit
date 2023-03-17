@@ -2,6 +2,8 @@ use std::fs::{self, OpenOptions};
 use std::io::{BufRead, BufReader};
 use std::io::prelude::*;
 
+
+// FIXME: Currently only using .gitignore to ignore filetypes.
 fn is_ignored(path: &std::path::PathBuf) -> bool {
     if let Ok(contents) = fs::read_to_string(".gitignore") {
         for line in contents.lines() {

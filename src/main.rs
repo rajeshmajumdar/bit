@@ -2,7 +2,6 @@ mod helpers;
 mod git;
 use std::env;
 
-
 fn main() {
     let cwd = env::current_dir().unwrap();
     if git::is_git_repo(&cwd) {
