@@ -8,7 +8,7 @@ use std::env;
 // TODO: Ability to change to different git client.
 
 fn usage() {
-    println!("Usage: flagit");
+    println!("Usage: bit");
     println!("");
     println!("Find all TODO and FIXME comments in your project and create issues on Git.");
     println!("");

@@ -1,0 +1,7 @@
+// TODO: Support for windows - 67
+// TODO: Add more special comments. - 68
+// FIXME: Currently only using .gitignore to ignore filetypes. - 69
+// TODO: Better error handling. - 70
+// TODO: Support for different OS & platforms. - 71
+// TODO: Usage screen. - 72
+// TODO: Ability to change to different git client. - 73

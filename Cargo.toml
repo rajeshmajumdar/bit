@@ -1,7 +1,16 @@
 [package]
-name = "flagit"
+name = "bit"
 version = "0.1.0"
 edition = "2021"
+description = "A Better Issue Tracker (BIT) for git."
+authors = ["Rajesh Majumdar <rajeshmjmdr02@gmail.com>"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/rajeshmajumdar/bit"
+repository = "https://github.com/rajeshmajumdar/bit"
+keywords = ["cli", "git", "issue"]
+categories = ["command-line-utilities", "development-tools"]
+exclude = ["target/*", "*.lock"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

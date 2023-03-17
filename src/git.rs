@@ -32,7 +32,7 @@ fn write_issue(issue: &str) -> std::io::Result<()> {
         .append(true)
         .create(true)
         .write(true)
-        .open("flagit.lock")
+        .open("bit.lock")
         .unwrap();
     let issue = format!("{}\n", issue);
     let mut writer = std::io::BufWriter::new(file);
@@ -42,7 +42,7 @@ fn write_issue(issue: &str) -> std::io::Result<()> {
 }
 
 fn already_issued(issue: &str) -> bool {
-    match std::fs::File::open("flagit.lock") {
+    match std::fs::File::open("bit.lock") {
         Ok(file) => {
             let reader = BufReader::new(file);
             for lines in reader.lines() {
@@ -92,7 +92,7 @@ fn get_git_creds() -> Option<String> {
         Some(path) => path,
         None => panic!("HOME environment not set."),
     };
-    let cred_path = home.to_str().unwrap_or_default().to_owned() + "/.flagitrc";
+    let cred_path = home.to_str().unwrap_or_default().to_owned() + "/.bitrc";
     let file = std::fs::File::open(cred_path).ok()?;
     let mut lines = BufReader::new(file).lines().filter_map(|line| line.ok());
 
@@ -158,7 +158,7 @@ pub fn create_issue(mut comment: String) -> Result<(), Box<dyn std::error::Error
             let client = reqwest::blocking::Client::new();
             let res = client.post(&url)
                 .header(AUTHORIZATION, format!("Bearer {}", token))
-                .header("User-Agent", "flagit")
+                .header("User-Agent", "bit")
                 .body(issue)
                 .send()
                 .unwrap();
@@ -188,7 +188,7 @@ fn get_comment(issue: &str) -> Option<String> {
 }
 
 fn remove_line_from_file(line: &str) -> std::io::Result<()> {
-    let file_path = "flagit.lock";
+    let file_path = "bit.lock";
     let temp = file_path.to_owned() + ".temp";
     let input_file = std::fs::File::open(file_path).unwrap();
     let temp_file = std::fs::File::create(&temp)?;
@@ -210,7 +210,7 @@ fn remove_line_from_file(line: &str) -> std::io::Result<()> {
 }
 
 pub fn close_issue_if_completed(issue: &str) {
-    let file = std::fs::File::open("flagit.lock").unwrap();
+    let file = std::fs::File::open("bit.lock").unwrap();
     let reader = BufReader::new(file);
     let mut not_completed: bool = false;
     for line in reader.lines() {
@@ -237,7 +237,7 @@ pub fn close_issue_if_completed(issue: &str) {
                 let client = reqwest::blocking::Client::new();
                 remove_line_from_file(&line).unwrap();
                 let _res = client.patch(&url)
-                    .header(reqwest::header::USER_AGENT, "flagit")
+                    .header(reqwest::header::USER_AGENT, "bit")
                     .header(reqwest::header::AUTHORIZATION, token)
                     .body(body)
                     .send()
