@@ -179,7 +179,7 @@ fn get_comment(issue: &str) -> Option<String> {
     if let Some(colon_index) = issue.find(':') {
         if let Some(dash_index) = issue.rfind('-') {
             if colon_index < dash_index {
-                let comment = issue[colon_index..dash_index].trim();
+                let comment = issue[colon_index + 1..dash_index].trim();
                 return Some(comment.to_string());
             }
         }
@@ -209,21 +209,19 @@ fn remove_line_from_file(line: &str) -> std::io::Result<()> {
     Ok(())
 }
 
-pub fn close_issue_if_completed(issue: &str) {
+pub fn close_issue_if_completed(issues: &Vec<String>) {
+    unimplemented!();
+    /*
     let file = std::fs::File::open("bit.lock").unwrap();
     let reader = BufReader::new(file);
-    let mut not_completed: bool = false;
     for line in reader.lines() {
         if let Ok(line) = line {
             let comment = match get_comment(&line) {
                 Some(val) => val,
                 None => continue,
             };
-            if issue.contains(&comment) {
-                not_completed = true;
-            }
-            if !not_completed {
-                unimplemented!();
+            if !check_if_contains(issues, &comment){
+                println!("----");
                 /*
                 let issue_number = line.rsplitn(2, '-').next().unwrap().trim();
                 let repo_data = get_repo_info().unwrap_or_default();
@@ -246,4 +244,5 @@ pub fn close_issue_if_completed(issue: &str) {
             }
         }
     }
+    */
 }

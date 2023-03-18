@@ -40,4 +40,4 @@ $ bit
 - [ ] Handle when executed for the first time.
 
 ### Contribution
-Feel free to submit a PR. The project itself is very simple, currently all the git actions are handled in 'git.rs' and other utilities are handled in `helpers.rs`.
+Feel free to submit a PR. The project itself is very simple, currently all the git actions are handled in `git.rs` and other utilities are handled in `helpers.rs`.

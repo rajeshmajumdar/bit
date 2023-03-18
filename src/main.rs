@@ -24,9 +24,9 @@ fn main() {
         let files = helpers::get_all_files(&cwd);
         for file in files {
             let issues = helpers::get_issues(&file);
+            //git::close_issue_if_completed(&issues);
             for issue in issues {
                 git::create_issue(issue.clone()).unwrap();
-                git::close_issue_if_completed(&issue);
             }
         }
     } else {
